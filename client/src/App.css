@@ -1,0 +1,51 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  display: flex;
+  align-items: center;
+  background-color: #white;
+  border-bottom: 1px solid grey;
+  height: 50px;
+  padding: 20px;
+  color: white;
+}
+
+.brand-name {
+}
+
+nav{
+  position: absolute;
+  right: 0;
+  margin-right: 10px;
+}
+
+li {
+  display: inline-block;
+  padding: 15px;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+
+/*HOME COMPONENT*/
+#header-home {
+  color: white;
+  float: right;
+  margin-top: 1em;
+  margin-right: 20%;
+}
+
+#candle-home{
+  background-image: url("/images/candle.jpg");
+  background-attachment: fixed;
+  z-index: -1;
+  width: 100%;
+  height: 500px;
+  background-repeat:no-repeat;
+  background-size: cover;
+  background-position:center;
+}
