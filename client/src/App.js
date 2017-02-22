@@ -12,9 +12,11 @@ class App extends Component {
     super();
 
     this.getCandles = this.getCandles.bind(this);
+    this.addToCart = this.addToCart.bind(this);
+
     this.state = {
       volume: "8oz",
-
+      cart: {}
     };
   }
     componentDidMount() {
@@ -30,6 +32,13 @@ class App extends Component {
       })
     })
       .catch((err) => { console.error(err); });
+  }
+
+  addToCart(key) {
+    console.log(`HERE DA KEY +:+ ${key}`)
+    const order = {...this.state.order}
+    order[key] = order[key] + 1 || 1
+    this.setState({ cart: order})
   }
 
   render() {
@@ -54,7 +63,10 @@ class App extends Component {
           <div className="main">
           <Switch>
             <Route exact path="/" render={() => (
-              <Home inventoryObject={this.state.inventoryObject} />
+              <Home
+              inventoryObject={this.state.inventoryObject}
+              addToCart={this.addToCart}
+              />
             )} />
             <Route exact path="/about" render={() => (
               <About inventoryObject={this.state.inventoryObject} />

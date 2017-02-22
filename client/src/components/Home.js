@@ -7,6 +7,7 @@ constructor(props) {
   super(props);
 // this.getInventory = this.getInventory.bind(this);
 this.renderInventory = this.renderInventory.bind(this);
+// this.addItem = this.addItem.bind(this);
 }
 
 // getInventory() {
@@ -15,12 +16,13 @@ this.renderInventory = this.renderInventory.bind(this);
 // }
 
 renderInventory() {
-let candles = {...this.props.inventoryObject}
-let candleElements = [];
+const candles = {...this.props.inventoryObject}
+const candleElements = [];
+const {addToCart} = this.props;
 
   for(let key in candles) {
     let candle = candles[key]
-    console.log(candle)
+    // console.log(`here is candle loop ${JSON.stringify(candle)}`)
 
     candleElements.push(
       <div className="candle-item" key={key}>
@@ -28,7 +30,7 @@ let candleElements = [];
       <img src="http://placehold.it/250x250"></img>
       <p>${candle.price}</p>
       <p>scent: {candle.scent}</p>
-      <button>Add to Cart</button>
+      <button onClick={ () => addToCart(key) }>Add to Cart</button>
       </div>
     )
     candleElements.reverse();
