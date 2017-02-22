@@ -49,3 +49,7 @@ li {
   background-size: cover;
   background-position:center;
 }
+
+.candle-item {
+  border: 1px solid grey;
+}

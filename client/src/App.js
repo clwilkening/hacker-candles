@@ -8,13 +8,29 @@ import axios from 'axios';
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super();
+
+    this.getCandles = this.getCandles.bind(this);
+    this.state = {
+      volume: "8oz",
+
+    };
+  }
     componentDidMount() {
-      axios.get('/api')
+      this.getCandles();
+    }
+
+  getCandles() {
+    axios.get('https://hackercandleinventory.firebaseio.com/.json?/candles')
       .then((response) => {
-      console.log(response);
+      // console.log(response.data);
+      this.setState({
+        inventoryObject: response.data.candles
+      })
     })
       .catch((err) => { console.error(err); });
-    }
+  }
 
   render() {
     return (
@@ -22,7 +38,7 @@ class App extends Component {
         <div className="App">
         <div className="App-header">
         <h2 className="brand-name">
-          <Link to="/" > Hacker Candles </Link>
+          <Link to="/"> Hacker Candles </Link>
         </h2>
         <nav className="nav">
           <ul>
@@ -37,9 +53,15 @@ class App extends Component {
         </div>
           <div className="main">
           <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/about" component={About} />
-            <Route exact path="/cart" component={Cart} />
+            <Route exact path="/" render={() => (
+              <Home inventoryObject={this.state.inventoryObject} />
+            )} />
+            <Route exact path="/about" render={() => (
+              <About inventoryObject={this.state.inventoryObject} />
+            )} />
+            <Route exact path="/cart" render={() => (
+              <Cart inventoryObject={this.state.inventoryObject} />
+            )} />
             <Route component={NotFound} />
           </Switch>
         </div>
