@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
 
 class Cart extends Component {
   constructor(props) {
@@ -56,7 +57,13 @@ class Cart extends Component {
       </div>
       :
       <div>
+      <div>
+        <button>
+          <Link to="/cart/shipping"> Checkout </Link>
+        </button>
+      </div>
       {this.renderCart()}
+      <h4>price before shipping: ${totalPrice}</h4>
       </div>
     );
   };

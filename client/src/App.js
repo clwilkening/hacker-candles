@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
 import Home from './components/Home';
 import About from './components/About';
 import Cart from './components/Cart';
+import Shipping from './components/Shipping';
 import NotFound from './components/NotFound';
 import axios from 'axios';
 import './App.css';
@@ -18,6 +19,7 @@ class App extends Component {
       volume: "8oz",
       cart: {},
       totalPrice: 0,
+      items: 0,
     };
   }
     componentDidMount() {
@@ -42,28 +44,32 @@ class App extends Component {
     let order = {...this.state.inventoryObject};
     let price = this.state.totalPrice;
     price = price + order[key].price
+    let items = price / 12;
     this.setState({
-      cart: cart,
+      cart,
       totalPrice: price,
+      items,
     })
   }
 
   removeCandle = (key) => {
-    console.log(`key = ${key}`)
+    // console.log(`key = ${key}`)
     let cart = {...this.state.cart};
-    console.log(`cart = ${JSON.stringify(cart)}`)
+    // console.log(`cart = ${JSON.stringify(cart)}`)
     let candlePrice = this.state.inventoryObject[key].price;
-    console.log(`candle price = ${candlePrice}`)
-    console.log(`cart[key] = ${cart[key]}`)
+    // console.log(`candle price = ${candlePrice}`)
+    // console.log(`cart[key] = ${cart[key]}`)
     let priceToSubtract = candlePrice * cart[key];
     let totalPrice = this.state.totalPrice;
-    console.log(`TotalPrice = ${totalPrice}`)
+    // console.log(`TotalPrice = ${totalPrice}`)
     let newPrice = totalPrice - priceToSubtract
+    let items = newPrice / candlePrice;
     console.log(`new Price = ${newPrice}`)
     delete cart[key];
     this.setState({
       cart,
       totalPrice: newPrice,
+      items,
     })
   }
 
@@ -99,6 +105,7 @@ class App extends Component {
     this.setState({
       cart,
       totalPrice: newTotal,
+      items: newCartItems
     });
   }
 
@@ -108,15 +115,18 @@ class App extends Component {
         <div className="App">
         <div className="App-header">
         <h2 className="brand-name">
-          <Link to="/"> Hacker Candles </Link>
+          <Link className="link" to="/"> Hacker Candles </Link>
         </h2>
         <nav className="nav">
           <ul>
             <li>
-              <Link to="/about" > About </Link>
+              <Link className="link" to="/about" > About </Link>
             </li>
             <li>
-              <Link to="/cart" > Cart </Link>
+              <Link className="link" to="/cart" > Cart </Link>
+            </li>
+            <li className="count">
+              {this.state.items}
             </li>
           </ul>
         </nav>
@@ -125,20 +135,29 @@ class App extends Component {
           <Switch>
             <Route exact path="/" render={() => (
               <Home
-              inventoryObject={this.state.inventoryObject}
-              addToCart={this.addToCart}
+                inventoryObject={this.state.inventoryObject}
+                addToCart={this.addToCart}
               />
             )} />
             <Route exact path="/about" render={() => (
-              <About inventoryObject={this.state.inventoryObject} />
+              <About
+                inventoryObject={this.state.inventoryObject}
+              />
             )} />
             <Route exact path="/cart" render={() => (
               <Cart
-              inventoryObject={this.state.inventoryObject}
-              cart={this.state.cart}
-              totalPrice={this.state.totalPrice}
-              updateCart={this.updateCart}
-              removeCandle={this.removeCandle}
+                inventoryObject={this.state.inventoryObject}
+                cart={this.state.cart}
+                totalPrice={this.state.totalPrice}
+                updateCart={this.updateCart}
+                removeCandle={this.removeCandle}
+              />
+            )} />
+            <Route exact path="/cart/shipping" render={() => (
+              <Shipping
+                inventoryObject={this.state.inventoryObject}
+                items={this.state.items}
+                cart={this.state.cart}
               />
             )} />
             <Route component={NotFound} />

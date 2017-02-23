@@ -22,8 +22,25 @@ nav{
 }
 
 li {
+  text-decoration: none !important;
   display: inline-block;
   padding: 15px;
+}
+
+.link {
+  text-decoration: none !important;
+  color: black;
+}
+
+.count {
+  border-radius: 100%;
+  background: lightgrey;
+  width: 5px;
+  height: 5px;
+  color: black;
+  font-weight: bold;
+  padding-top: 5px;
+  padding-bottom: 20px;
 }
 
 .App-intro {
