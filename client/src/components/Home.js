@@ -26,11 +26,11 @@ const {addToCart} = this.props;
 
     candleElements.push(
       <div className="candle-item" key={key}>
-      <h4>{candle.name}</h4>
+      <h3>{candle.name}</h3>
       <img className="candle-image" src="http://placehold.it/250x250"></img>
-      <p>${candle.price}</p>
+      <h4>${candle.price}</h4>
       <p>scent: {candle.scent}</p>
-      <button onClick={ () => addToCart(key) }>Add to Cart</button>
+      <button className="add-button"onClick={ () => addToCart(key) }>Add to Cart</button>
       </div>
     )
     candleElements.reverse();
