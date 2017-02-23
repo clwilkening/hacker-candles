@@ -138,10 +138,10 @@ class App extends Component {
         <nav className="nav">
           <ul>
             <li>
-              <Link className="link" to="/about" > About </Link>
+              <Link className="link nav-item" to="/about" > About </Link>
             </li>
             <li>
-              <Link className="link" to="/cart" > Cart </Link>
+              <Link className="link nav-item" to="/cart" > Cart </Link>
             </li>
             <li className="count">
               {this.state.items}
