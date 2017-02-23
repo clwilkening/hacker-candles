@@ -59,7 +59,7 @@ class Cart extends Component {
       <div>
       <div>
         <button>
-          <Link to="/cart/shipping"> Checkout </Link>
+          <Link to="/cart/shipping">Proceed to Checkout </Link>
         </button>
       </div>
       {this.renderCart()}

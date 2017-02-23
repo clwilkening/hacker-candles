@@ -14,12 +14,24 @@ class App extends Component {
 
     this.getCandles = this.getCandles.bind(this);
     this.addToCart = this.addToCart.bind(this);
+    this.setShippingState = this.setShippingState.bind(this);
 
     this.state = {
       volume: "8oz",
       cart: {},
       totalPrice: 0,
       items: 0,
+      shipping: {
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        addressOne: "",
+        addressTwo: "",
+        city: "",
+        state: "",
+        zipcode: "",
+      },
     };
   }
     componentDidMount() {
@@ -109,6 +121,12 @@ class App extends Component {
     });
   }
 
+  setShippingState(shipping) {
+    this.setState({
+      shipping,
+    })
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -158,6 +176,8 @@ class App extends Component {
                 inventoryObject={this.state.inventoryObject}
                 items={this.state.items}
                 cart={this.state.cart}
+                setShippingState={this.setShippingState}
+                shipping={this.state.shipping}
               />
             )} />
             <Route component={NotFound} />
