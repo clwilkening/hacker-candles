@@ -5,6 +5,7 @@ import About from './components/About';
 import Cart from './components/Cart';
 import Shipping from './components/Shipping';
 import Billing from './components/Billing';
+import ReviewOrder from './components/ReviewOrder';
 import StripeCheckout from './components/StripeCheckout';
 import NotFound from './components/NotFound';
 import axios from 'axios';
@@ -225,6 +226,20 @@ class App extends Component {
                 getShipping={this.getShipping}
                 billingAddress={this.state.billingAddress}
                 setBillingAddress={this.setBillingAddress}
+              />
+            )} />
+            <Route exact path="/cart/review-order" render={() => (
+              <ReviewOrder
+                inventoryObject={this.state.inventoryObject}
+                items={this.state.items}
+                cart={this.state.cart}
+                setShippingState={this.setShippingState}
+                shipping={this.state.shipping}
+                useShipping={this.state.useShipping}
+                getShipping={this.getShipping}
+                billingAddress={this.state.billingAddress}
+                setBillingAddress={this.setBillingAddress}
+                totalPrice={this.state.totalPrice}
               />
             )} />
             <Route component={NotFound} />

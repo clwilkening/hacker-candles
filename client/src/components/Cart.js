@@ -58,7 +58,7 @@ class Cart extends Component {
     return(
       JSON.stringify(cart) === "{}" ?
       <div>
-      <h1>No Candles in Cart</h1>
+      <h1 className="no-candles">No Candles in Cart</h1>
       </div>
       :
       <div>

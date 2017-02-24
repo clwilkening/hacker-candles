@@ -1,14 +1,23 @@
+html, body {
+  height: 100%;
+  background: #fafafa;
+}
+
 .App {
+  margin-top: 80px;
   text-align: center;
   background: #fafafa; /*light-grey*/
 }
 
 .App-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
   display: flex;
   align-items: center;
   background-color: white;
-  border-bottom: 1px solid grey;
-  height: 90px;
+  box-shadow: 0px 0px 8px #9e9e9e;
+  height: 75px;
   color: white;
 }
 
@@ -34,7 +43,7 @@ li {
 }
 
 .nav-item{
-  padding: 35px 15px 35px 15px;
+  padding: 27px 15px 27px 15px;
   transition: background-color .5s;
   font-weight: bold;
 }
@@ -42,7 +51,7 @@ li {
 .nav-item:hover {
   background-color: #e0e0e0; /*grey*/
   color: white;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid #2196f3;
 }
 
 .count {
@@ -98,7 +107,7 @@ li {
 }
 
 .candle-item:hover {
-  box-shadow: 0px 0px 12px #9e9e9e; /*materialize grey*/
+  box-shadow: 0px 0px 12px #607d8b; /*materialize blue-grey*/
   background: white;
 }
 
@@ -120,6 +129,10 @@ li {
 }
 .add-button:hover {
   background-color: #ef5350; /*red-ligthen-1*/
+}
+
+.no-candles {
+  margin-top: 100px;
 }
 
 /*SHIPPING*/
