@@ -34,12 +34,17 @@ class Cart extends Component {
           <img src="http://placehold.it/250x250"></img>
           <p>price/candle: ${candle[key].price}</p>
           <p>scent: {candle[key].scent}</p>
-          <p>quantity:</p> <input type="number" min="0" max="10" defaultValue={item} onChange={(e) => this.handleChange(e, key)}></input>
-
+          <p>quantity:</p>
+          { this.props.cart[key] === null || isNaN(this.props.cart[key])
+          ?
+            <input type="number" min="0" max="10" defaultValue="1" onChange={(e) => this.handleChange(e, key)} required></input>
+          :
+            <input type="number" min="0" max="10" defaultValue={item} onChange={(e) => this.handleChange(e, key)} required></input>
+          }
           </div>
         )
+       // console.log(`cart[key] = ${key} + ${this.props.cart[key]}`)
       }
-      // console.log(cartElements)
       return (
         <div>
         {cartElements}

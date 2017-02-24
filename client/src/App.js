@@ -4,6 +4,7 @@ import Home from './components/Home';
 import About from './components/About';
 import Cart from './components/Cart';
 import Shipping from './components/Shipping';
+import Billing from './components/Billing';
 import NotFound from './components/NotFound';
 import axios from 'axios';
 import './App.css';
@@ -15,6 +16,8 @@ class App extends Component {
     this.getCandles = this.getCandles.bind(this);
     this.addToCart = this.addToCart.bind(this);
     this.setShippingState = this.setShippingState.bind(this);
+    this.getShipping = this.getShipping.bind(this);
+    this.setBillingAddress = this.setBillingAddress.bind(this);
 
     this.state = {
       volume: "8oz",
@@ -32,6 +35,18 @@ class App extends Component {
         state: "",
         zipcode: "",
       },
+      billingAddress: {
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        addressOne: "",
+        addressTwo: "",
+        city: "",
+        state: "",
+        zipcode: "",
+      },
+      useShipping: false,
     };
   }
     componentDidMount() {
@@ -56,7 +71,7 @@ class App extends Component {
     let order = {...this.state.inventoryObject};
     let price = this.state.totalPrice;
     price = price + order[key].price
-    let items = price / 12;
+    let items = price / order[key].price;
     this.setState({
       cart,
       totalPrice: price,
@@ -91,9 +106,9 @@ class App extends Component {
     // console.log(cart[key])
     // console.log(`after ${JSON.stringify(cart)}`)
     let totalPrice = this.state.totalPrice;
-    console.log(totalPrice)
+    // console.log(totalPrice)
     let candlePrice = this.state.inventoryObject[key].price;
-    console.log(candlePrice)
+    // console.log(candlePrice)
     //loop through cart, grab values
     let cartItems =[];
       for (var key in cart) {
@@ -113,7 +128,7 @@ class App extends Component {
     let newCartItems = cartItems.reduce(getSum)
     // console.log(`new cart items = ${newCartItems}`)
     let newTotal = candlePrice * newCartItems;
-    console.log(newTotal)
+    // console.log(newTotal)
     this.setState({
       cart,
       totalPrice: newTotal,
@@ -124,6 +139,24 @@ class App extends Component {
   setShippingState(shipping) {
     this.setState({
       shipping,
+    })
+  }
+
+  getShipping() {
+    if (this.state.useShipping === false){
+      this.setState({
+        useShipping: true,
+      })
+    } else {
+      this.setState({
+        useShipping: false,
+      })
+    }
+  }
+
+  setBillingAddress(shipping) {
+    this.setState({
+      billingAddress: shipping,
     })
   }
 
@@ -178,6 +211,19 @@ class App extends Component {
                 cart={this.state.cart}
                 setShippingState={this.setShippingState}
                 shipping={this.state.shipping}
+              />
+            )} />
+            <Route exact path="/cart/shipping/billing" render={() => (
+              <Billing
+                inventoryObject={this.state.inventoryObject}
+                items={this.state.items}
+                cart={this.state.cart}
+                setShippingState={this.setShippingState}
+                shipping={this.state.shipping}
+                useShipping={this.state.useShipping}
+                getShipping={this.getShipping}
+                billingAddress={this.state.billingAddress}
+                setBillingAddress={this.setBillingAddress}
               />
             )} />
             <Route component={NotFound} />

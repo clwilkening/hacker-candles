@@ -122,3 +122,20 @@ li {
   background-color: #ef5350; /*red-ligthen-1*/
 }
 
+/*SHIPPING*/
+
+.shipping-form-container {
+
+}
+.shipping-form, .billing-form {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+form label, input {
+  margin: auto;
+}
+
