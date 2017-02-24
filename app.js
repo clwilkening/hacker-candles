@@ -8,7 +8,13 @@ var bodyParser = require('body-parser');
 // var index = require('./routes/index');
 // var users = require('./routes/users');
 
+const keyPublishable = process.env.PUBLISHABLE_KEY;
+const keySecret = process.env.SECRET_KEY;
 var app = express();
+// const app = require("express")();
+const stripe = require("stripe")(keySecret);
+
+
 
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
