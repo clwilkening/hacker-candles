@@ -5,6 +5,7 @@ import About from './components/About';
 import Cart from './components/Cart';
 import Shipping from './components/Shipping';
 import Billing from './components/Billing';
+import StripeCheckout from './components/StripeCheckout';
 import NotFound from './components/NotFound';
 import axios from 'axios';
 import './App.css';

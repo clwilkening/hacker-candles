@@ -1,6 +1,6 @@
-import React, {Component} from "react";
+import React, {Component} from 'react';
 import { Link, Redirect } from 'react-router-dom';
-
+import StripeCheck from './StripeCheckout.js';
 
 class Billing extends Component {
 constructor(props) {
@@ -113,11 +113,12 @@ render() {
         :
           <p>please fill out form and click 'Use this Address'</p>
       }
-        </div>
+      <StripeCheck />
+      </div>
       :
       <Redirect to="/" />
-      )
-    }
+    )
+  }
 }
 
 export default Billing;

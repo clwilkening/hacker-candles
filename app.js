@@ -10,7 +10,7 @@ var bodyParser = require('body-parser');
 
 const keyPublishable = process.env.PUBLISHABLE_KEY;
 const keySecret = process.env.SECRET_KEY;
-var app = express();
+const app = express();
 // const app = require("express")();
 const stripe = require("stripe")(keySecret);
 
