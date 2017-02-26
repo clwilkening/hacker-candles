@@ -51,72 +51,89 @@ render() {
     return (
 
       items > 0 ?
-        <div className="billing-form-container">
-        <h5 className="bill-cart-items">Items in cart: {this.itemsInCart()}</h5>
+        <div className="shipping-form-container">
+        <h5 className="ship-cart-items">Items in cart: {this.itemsInCart()}</h5>
         { useShipping === false ?
-        <button onClick={() => this.props.getShipping()}>Use Shipping Address</button>
+        <button className="ship-button" onClick={() => this.props.getShipping()}>Use Shipping Address</button>
         :
-        <button onClick={() => this.props.getShipping()}>Use Another Address</button>
+        <button className="ship-button" onClick={() => this.props.getShipping()}>Use Another Address</button>
         }
 
       { useShipping === true ?
-        <form className="billing-form" action="">
+        <form className="shipping-form" action="">
+          <p>
           <label htmlFor="firstName">First Name:</label>
-          <input ref={(input) => this.firstName = input} type="text" name="firstName" value={shipping.firstName} required/>
+          <input ref={(input) => this.firstName = input} type="text" name="firstName" value={shipping.firstName} required/></p>
+          <p>
           <label htmlFor="lastName">Last Name:</label>
-          <input ref={(input) => this.lastName = input} type="text" name="lastName" value={shipping.lastName} required/>
+          <input ref={(input) => this.lastName = input} type="text" name="lastName" value={shipping.lastName} required/></p>
+          <p>
           <label htmlFor="email">Email:</label>
-          <input ref={(input) => this.email = input} type="text" name="email" value={shipping.email} required/>
+          <input ref={(input) => this.email = input} type="text" name="email" value={shipping.email} required/></p>
+          <p>
           <label htmlFor="phone">Phone:</label>
-          <input ref={(input) => this.phone= input} type="text" name="phone" value={shipping.phone} />
+          <input ref={(input) => this.phone= input} type="text" name="phone" value={shipping.phone} /></p>
+          <p>
           <label htmlFor="addressOne">Address line 1:</label>
-          <input ref={(input) => this.addressOne = input} type="text" name="addressOne" value={shipping.addressOne} required/>
+          <input ref={(input) => this.addressOne = input} type="text" name="addressOne" value={shipping.addressOne} required/></p>
+          <p>
           <label htmlFor="addressTwo">Address line 2 (optional):</label>
-          <input ref={(input) => this.addressTwo = input} type="text" name="addressTwo" value={shipping.addressTwo} />
+          <input ref={(input) => this.addressTwo = input} type="text" name="addressTwo" value={shipping.addressTwo} /></p>
+          <p>
           <label htmlFor="city">City:</label>
-          <input ref={(input) => this.city = input} type="text" name="city" value={shipping.city} required/>
+          <input ref={(input) => this.city = input} type="text" name="city" value={shipping.city} required/></p>
+          <p>
           <label htmlFor="state">State:</label>
-          <input ref={(input) => this.state = input} type="text" name="state" maxLength="2" value={shipping.state} required/>
+          <input ref={(input) => this.state = input} type="text" name="state" maxLength="2" value={shipping.state} required/></p>
+          <p>
           <label htmlFor="zipcode">Zip Code:</label>
-          <input ref={(input) => this.zipcode = input} type="text" name="zipcode" value={shipping.zipcode} required/>
-          <button className="add-button" onClick={(e) => this.createBillingAddress(e) }>Use this Address</button>
+          <input ref={(input) => this.zipcode = input} type="text" name="zipcode" value={shipping.zipcode} required/></p>
+          <button className="ship-button" onClick={(e) => this.createBillingAddress(e) }>Use this Address</button>
         </form>
         :
-        <form className="billing-form" action="">
+        <form className="shipping-form" action="">
+          <p>
           <label htmlFor="firstName">First Name:</label>
-          <input ref={(input) => this.firstName = input} type="text" name="firstName" required />
+          <input ref={(input) => this.firstName = input} type="text" name="firstName" required /></p>
+          <p>
           <label htmlFor="lastName">Last Name:</label>
-          <input ref={(input) => this.lastName = input} type="text" name="lastName" required />
+          <input ref={(input) => this.lastName = input} type="text" name="lastName" required /></p>
+          <p>
           <label htmlFor="email">Email:</label>
-          <input ref={(input) => this.email = input} type="text" name="email" required />
+          <input ref={(input) => this.email = input} type="text" name="email" required /></p>
+          <p>
           <label htmlFor="phone">Phone:</label>
-          <input ref={(input) => this.phone= input} type="text" name="phone" />
+          <input ref={(input) => this.phone= input} type="text" name="phone" /></p>
+          <p>
           <label htmlFor="addressOne">Address line 1:</label>
-          <input ref={(input) => this.addressOne = input} type="text" name="addressOne" required/>
+          <input ref={(input) => this.addressOne = input} type="text" name="addressOne" required/></p>
+          <p>
           <label htmlFor="addressTwo">Address line 2 (optional):</label>
-          <input ref={(input) => this.addressTwo = input} type="text" name="addressTwo" placeholder="Apt, Unit, Suite, Etc."/>
+          <input ref={(input) => this.addressTwo = input} type="text" name="addressTwo" placeholder="Apt, Unit, Suite, Etc."/></p>
+          <p>
           <label htmlFor="city">City:</label>
-          <input ref={(input) => this.city = input} type="text" name="city" required/>
+          <input ref={(input) => this.city = input} type="text" name="city" required/></p>
+          <p>
           <label htmlFor="state">State:</label>
-          <input ref={(input) => this.state = input} type="text" name="state" maxLength="2"  required/>
+          <input ref={(input) => this.state = input} type="text" name="state" maxLength="2"  required/></p>
+          <p>
           <label htmlFor="zipcode">Zip Code:</label>
-          <input ref={(input) => this.zipcode = input} type="text" name="zipcode" required/>
-          <button className="add-button" onClick={(e) => this.createBillingAddress(e) }>Use this Address</button>
+          <input ref={(input) => this.zipcode = input} type="text" name="zipcode" required/></p>
+          <button className="ship-button" onClick={(e) => this.createBillingAddress(e) }>Use this Address</button>
         </form>
       }
       { billingAddress.firstName !== "" && billingAddress.addressOne !== "" ?
-          <div>
-          <h3>Credit Card</h3>
-          <button><Link to="/cart/review-order/">Review Order</Link></button>
+          <div id="to-bill-cont">
+          <Link to="/cart/review-order/"><button className="ship-button">Review and Pay</button></Link>
           </div>
         :
-          <p>please fill out form and click 'Use this Address'</p>
+          <p>Please fill out form and click 'Use this Address'.</p>
       }
       </div>
       :
       <Redirect to="/" />
     )
-  }
-}
+  };
+};
 
 export default Billing;

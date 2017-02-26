@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
 import Home from './components/Home';
+import CSSTransitionGroup from 'react-addons-css-transition-group';
 import About from './components/About';
 import Cart from './components/Cart';
 import Shipping from './components/Shipping';
@@ -49,6 +50,7 @@ class App extends Component {
         zipcode: "",
       },
       useShipping: false,
+      shippingCost: 4,
     };
   }
     componentDidMount() {
@@ -91,7 +93,7 @@ class App extends Component {
     let priceToSubtract = candlePrice * cart[key];
     let totalPrice = this.state.totalPrice;
     // console.log(`TotalPrice = ${totalPrice}`)
-    let newPrice = totalPrice - priceToSubtract
+    let newPrice = totalPrice - priceToSubtract;
     let items = newPrice / candlePrice;
     console.log(`new Price = ${newPrice}`)
     delete cart[key];
@@ -99,8 +101,8 @@ class App extends Component {
       cart,
       totalPrice: newPrice,
       items,
-    })
-  }
+    });
+  };
 
   updateCart = (key, value) => {
     let cart = {...this.state.cart};
@@ -122,12 +124,12 @@ class App extends Component {
         } else {
         cartItems.push(obj)
         // console.log(`Twas a number === ${cartItems}`)
-        }
-      }
+        };
+      };
     let getSum = (total, num) => {
       return total + num
-    }
-    let newCartItems = cartItems.reduce(getSum)
+    };
+    let newCartItems = cartItems.reduce(getSum);
     // console.log(`new cart items = ${newCartItems}`)
     let newTotal = candlePrice * newCartItems;
     // console.log(newTotal)
@@ -136,31 +138,31 @@ class App extends Component {
       totalPrice: newTotal,
       items: newCartItems
     });
-  }
+  };
 
   setShippingState(shipping) {
     this.setState({
       shipping,
-    })
-  }
+    });
+  };
 
   getShipping() {
     if (this.state.useShipping === false){
       this.setState({
         useShipping: true,
-      })
+      });
     } else {
       this.setState({
         useShipping: false,
-      })
-    }
-  }
+      });
+    };
+  };
 
   setBillingAddress(shipping) {
     this.setState({
       billingAddress: shipping,
-    })
-  }
+    });
+  };
 
   render() {
     return (
@@ -240,6 +242,7 @@ class App extends Component {
                 billingAddress={this.state.billingAddress}
                 setBillingAddress={this.setBillingAddress}
                 totalPrice={this.state.totalPrice}
+                shippingCost={this.state.shippingCost}
               />
             )} />
             <Route component={NotFound} />

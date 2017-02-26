@@ -8,7 +8,7 @@ constructor(props) {
 // this.getInventory = this.getInventory.bind(this);
 this.renderInventory = this.renderInventory.bind(this);
 // this.addItem = this.addItem.bind(this);
-}
+};
 
 // getInventory() {
 //   let candles = {...this.props.inventoryObject}
@@ -16,7 +16,7 @@ this.renderInventory = this.renderInventory.bind(this);
 // }
 
 renderInventory() {
-const candles = {...this.props.inventoryObject}
+const candles = {...this.props.inventoryObject};
 const candleElements = [];
 const {addToCart} = this.props;
 
@@ -30,17 +30,17 @@ const {addToCart} = this.props;
       <img className="candle-image" src="http://placehold.it/250x250"></img>
       <h4>${candle.price}</h4>
       <p>scent: {candle.scent}</p>
-      <button className="add-button"onClick={ () => addToCart(key) }>Add to Cart</button>
+      <button className="add-button" onClick={ () => addToCart(key) } >Add to Cart</button>
       </div>
     )
     candleElements.reverse();
-  }
+  };
   return (
     <div className="candle-container">
       {candleElements}
     </div>
   )
-}
+};
 
   render() {
     return(
@@ -51,7 +51,7 @@ const {addToCart} = this.props;
         {this.renderInventory()}
       </div>
     );
-  }
-}
+  };
+};
 
 export default Home;

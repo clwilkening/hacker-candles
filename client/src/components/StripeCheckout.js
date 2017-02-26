@@ -3,10 +3,12 @@ import StripeCheckout from 'react-stripe-checkout';
 
 class TakeMoney extends Component {
   onToken = (token) => {
+      // console.log(token);
     fetch('/save-stripe-token', {
       method: 'POST',
       body: JSON.stringify(token),
     }).then(response => {
+      // console.log(response)
       response.json().then(data => {
         alert(`We are in business, ${data.email}`);
       });

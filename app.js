@@ -26,14 +26,40 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'client/build')));
 
-app.use('/api', (req, res) => {
+
+app.use('/save-stripe-token', (req, res) => {
   res.json({message: 'hello world'});
 });
+
 app.use('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'client/build', 'index.html'));
 });
+
+// app.get("/", (req, res) =>
+//   res.render("index.pug", {keyPublishable}));
+
+app.post("/save-stripe-token", (req, res) => {
+  console.log(req)
+  let amount = 500;
+  stripe.customers.create({
+     email: req.body.stripeEmail,
+    source: req.body.stripeToken
+  })
+  .then(customer =>
+    stripe.charges.create({
+      amount,
+      description: "Sample Charge",
+         currency: "usd",
+         customer: customer.id
+    }))
+  .then(charge => res.sendFile(path.resolve(__dirname, 'client/build', 'index.html')));
+});
+
+app.listen(4567);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
