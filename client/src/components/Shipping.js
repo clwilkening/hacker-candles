@@ -50,10 +50,14 @@ render() {
 
   items > 0 ?
     <div className="shipping-form-container">
-    <h3>Shipping</h3>
+      <div className="rev-img rev-img-three">
+        <img className="delivery-bold" src="/images/delivery.png"></img><p></p>
+        <img className="address" src="/images/address_book.png"></img><p></p>
+        <img className="credit" src="/images/credit_card.png"></img>
+      </div>
     <h5 className="ship-cart-items">Items in cart: {this.itemsInCart()}</h5>
    { this.props.shipping ?
-    <form className="shipping-form" action="">
+    <form className="shipping-form" action="#">
       <p>
       <label htmlFor="firstName">First Name:</label>
       <input ref={(input) => this.firstName = input} type="text" name="firstName" defaultValue={shipping.firstName} required/>
@@ -90,10 +94,10 @@ render() {
       <label htmlFor="zipcode">Zip Code:</label>
       <input ref={(input) => this.zipcode = input} type="text" name="zipcode" defaultValue={shipping.zipcode} required/>
       </p>
-      <button className="ship-button" onClick={(e) => this.createShippingAddress(e) }>Save</button>
+      <button type="submit" className="ship-button" onClick={(e) => this.createShippingAddress(e) }>Save</button>
     </form>
     :
-    <form className="shipping-form" action="">
+    <form className="shipping-form" action="#">
       <p>
       <label htmlFor="firstName">First Name:</label>
       <input ref={(input) => this.firstName = input} type="text" name="firstName" required />
@@ -130,7 +134,7 @@ render() {
       <label htmlFor="zipcode">Zip Code:</label>
       <input ref={(input) => this.zipcode = input} type="text" name="zipcode" required/>
       </p>
-    <button className="ship-button" onClick={(e) => this.createShippingAddress(e) }> Save </button>
+    <button type="submit"className="ship-button" onClick={(e) => this.createShippingAddress(e) }> Save </button>
     </form>
   }
     { shipping.firstName !== "" && shipping.addressOne !== "" ?

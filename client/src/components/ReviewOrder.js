@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import TakeMoney from './StripeCheckout'
+import TakeMoney from './StripeCheckout';
+// import axios from 'axios';
 
 class ReviewOrder extends Component {
 constructor(props) {
@@ -21,8 +22,8 @@ constructor(props) {
         cartElements.push(
           <div className="review-item" key={key}>
               <h4>{candle[key].name}:</h4>
-              <h4>Qty: {cart[key]} </h4>
-              <h4>${candle[key].price} each</h4>
+              <p>Qty: {cart[key]} </p>
+              <p>${candle[key].price} each</p>
           </div>
         );
       }
@@ -54,27 +55,27 @@ constructor(props) {
       // for (let element in shipping){
       shipping.addressTwo !== "" ?
       showShipping.push(
-        <div className="review-address" key="shippingaddress">
+        <div className="review-address" key="shipping-address">
           <h4>Shipping Address</h4>
-          <h4>{shipping.firstName}</h4>
-          <h4>{shipping.lastName}</h4>
-          <h4>{shipping.addressOne}</h4>
-          <h4>{shipping.addressTwo}</h4>
-          <h4>{shipping.city}</h4>
-          <h4>{shipping.state}</h4>
-          <h4>{shipping.zipcode}</h4>
+          <p>{shipping.firstName}</p>
+          <p>{shipping.lastName}</p>
+          <p>{shipping.addressOne}</p>
+          <p>{shipping.addressTwo}</p>
+          <p>{shipping.city}</p>
+          <p>{shipping.state}</p>
+          <p>{shipping.zipcode}</p>
         </div>
       )
       :
       showShipping.push(
-        <div className="review-address" key="shippingaddress">
+        <div className="review-address" key="shipping-address">
           <h4>Shipping Address</h4>
-          <h4>{shipping.firstName}</h4>
-          <h4>{shipping.lastName}</h4>
-          <h4>{shipping.addressOne}</h4>
-          <h4>{shipping.city}</h4>
-          <h4>{shipping.state}</h4>
-          <h4>{shipping.zipcode}</h4>
+          <p>{shipping.firstName}</p>
+          <p>{shipping.lastName}</p>
+          <p>{shipping.addressOne}</p>
+          <p>{shipping.city}</p>
+          <p>{shipping.state}</p>
+          <p>{shipping.zipcode}</p>
         </div>
       )
     return (
@@ -90,27 +91,27 @@ constructor(props) {
       // for (let element in billing){
       billing.addressTwo !== "" ?
       showBilling.push(
-        <div className="review-address" key="billingaddress">
-          <h4>billing Address</h4>
-          <h4>{billing.firstName}</h4>
-          <h4>{billing.lastName}</h4>
-          <h4>{billing.addressOne}</h4>
-          <h4>{billing.addressTwo}</h4>
-          <h4>{billing.city}</h4>
-          <h4>{billing.state}</h4>
-          <h4>{billing.zipcode}</h4>
+        <div className="review-address" key="billing-address">
+          <h4>Billing Address</h4>
+          <p>{billing.firstName}</p>
+          <p>{billing.lastName}</p>
+          <p>{billing.addressOne}</p>
+          <p>{billing.addressTwo}</p>
+          <p>{billing.city}</p>
+          <p>{billing.state}</p>
+          <p>{billing.zipcode}</p>
         </div>
       )
       :
       showBilling.push(
-        <div className="review-address" key="billingaddress">
-          <h4>billing Address</h4>
-          <h4>{billing.firstName}</h4>
-          <h4>{billing.lastName}</h4>
-          <h4>{billing.addressOne}</h4>
-          <h4>{billing.city}</h4>
-          <h4>{billing.state}</h4>
-          <h4>{billing.zipcode}</h4>
+        <div className="review-address" key="billing-address">
+          <h4>Billing Address</h4>
+          <p>{billing.firstName}</p>
+          <p>{billing.lastName}</p>
+          <p>{billing.addressOne}</p>
+          <p>{billing.city}</p>
+          <p>{billing.state}</p>
+          <p>{billing.zipcode}</p>
         </div>
       )
     return (
@@ -125,20 +126,27 @@ render() {
     return (
 
       items > 0 ?
-
-        <div className="review-container">
-        <div className="review-cart-items">
-          <h4>Review your order: </h4>
-          {this.itemsInCart()}
-          <h4>Candles: ${totalPrice}</h4>
-          <h4>Shipping: ${this.getShippingCost()}</h4>
-          <h4>Total: ${this.finalAmount()}</h4>
-        </div>
         <div>
-          {this.showShippingAddress()}
-          {this.showBillingAddress()}
+          <div className="rev-img rev-img-three">
+            <img className="delivery" src="/images/delivery.png"></img><p></p>
+            <img className="address" src="/images/address_book.png"></img><p></p>
+            <img className="credit-bold" src="/images/credit_card.png"></img>
+          </div>
+        <div className="review-container">
+          <div className="address-cont">
+            {this.showShippingAddress()}
+            {this.showBillingAddress()}
+          </div>
+          <div className="review-cart-cont">
+            {this.itemsInCart()}
+            <div className="moneys">
+            <div className="money"><h4>Candles:</h4><h4> ${totalPrice} </h4></div>
+            <div className="money"><h4>Shipping:</h4><h4> ${this.getShippingCost()} </h4></div>
+            <div className="money"><h4>Total:</h4><h4>${this.finalAmount()} </h4></div>
+            </div>
+          </div>
         </div>
-        <TakeMoney />
+        <div className="take-money">  <TakeMoney /></div>
         </div>
       :
         <Redirect to="/" />

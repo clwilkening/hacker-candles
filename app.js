@@ -29,9 +29,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 
-app.use('/save-stripe-token', (req, res) => {
-  res.json({message: 'hello world'});
-});
+// app.use('/save-stripe-token', (req, res) => {
+//   res.json({message: 'hello world'});
+// });
 
 app.use('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'client/build', 'index.html'));
@@ -40,8 +40,8 @@ app.use('*', (req, res) => {
 // app.get("/", (req, res) =>
 //   res.render("index.pug", {keyPublishable}));
 
-app.post("/save-stripe-token", (req, res) => {
-  console.log(req)
+app.post('/save-stripe-token', (req, res) => {
+  console.log(req);
   let amount = 500;
   stripe.customers.create({
      email: req.body.stripeEmail,
@@ -54,9 +54,9 @@ app.post("/save-stripe-token", (req, res) => {
          currency: "usd",
          customer: customer.id
     }))
-  .then(charge => res.sendFile(path.resolve(__dirname, 'client/build', 'index.html')));
+  .then(charge => res.json(response));
 });
-
+// File(path.resolve(__dirname, 'client/build', 'index.html'))
 app.listen(4567);
 
 
@@ -76,7 +76,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.json('error');
 });
 
 module.exports = app;

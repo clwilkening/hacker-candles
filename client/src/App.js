@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
+import FontAwesome from 'react-fontawesome';
 import Home from './components/Home';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import About from './components/About';
@@ -178,7 +179,7 @@ class App extends Component {
               <Link className="link nav-item" to="/about" > About </Link>
             </li>
             <li>
-              <Link className="link nav-item" to="/cart" > Cart </Link>
+              <Link className="link" to="/cart" ><img className="cart-img" alt="cart" src="/images/shopping_basket.png"></img></Link>
             </li>
             <li className="count">
               {this.state.items}

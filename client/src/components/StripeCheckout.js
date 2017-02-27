@@ -1,17 +1,18 @@
 import React, {Component} from 'react'
 import StripeCheckout from 'react-stripe-checkout';
+// import axios from 'axios';
 
 class TakeMoney extends Component {
   onToken = (token) => {
-      // console.log(token);
+    console.log(token)
     fetch('/save-stripe-token', {
       method: 'POST',
       body: JSON.stringify(token),
     }).then(response => {
-      // console.log(response)
+      console.log(response)
       response.json().then(data => {
         alert(`We are in business, ${data.email}`);
-      });
+      })
     });
   }
 
