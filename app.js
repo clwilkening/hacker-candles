@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+require('dotenv').config()
 
 // var index = require('./routes/index');
 // var users = require('./routes/users');
@@ -33,9 +34,6 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 //   res.json({message: 'hello world'});
 // });
 
-app.use('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'client/build', 'index.html'));
-});
 
 // app.get("/", (req, res) =>
 //   res.render("index.pug", {keyPublishable}));
@@ -54,11 +52,17 @@ app.post('/save-stripe-token', (req, res) => {
          currency: "usd",
          customer: customer.id
     }))
-  .then(charge => res.json(response));
+  .then(charge => {
+    console.log(charge);
+    res.json({message:'hello steve'})
+  });
 });
 // File(path.resolve(__dirname, 'client/build', 'index.html'))
 app.listen(4567);
 
+app.use('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'client/build', 'index.html'));
+});
 
 
 // catch 404 and forward to error handler

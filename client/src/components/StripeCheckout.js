@@ -1,22 +1,18 @@
 import React, {Component} from 'react'
 import StripeCheckout from 'react-stripe-checkout';
-// import axios from 'axios';
+import axios from 'axios';
 
 class TakeMoney extends Component {
   onToken = (token) => {
     console.log(token)
-    fetch('/save-stripe-token', {
-      method: 'POST',
-      body: JSON.stringify(token),
-    }).then(response => {
-      console.log(response)
-      response.json().then(data => {
-        alert(`We are in business, ${data.email}`);
+    axios.post('/save-stripe-token', JSON.stringify(token))
+    // .then(response => response.json())
+    .then(response => {
+        console.log(response.data)
+        alert(`We are in business, email`);
       })
-    });
-  }
-
-  // ...
+    .catch(err => console.log(err))
+    };
 
   render() {
     return (

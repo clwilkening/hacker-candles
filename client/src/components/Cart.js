@@ -30,7 +30,7 @@ class Cart extends Component {
         // console.log(candle[key].name)
         cartElements.push(
           <div className="cart-item" key={key}>
-          <img className="cart-image" src="http://placehold.it/100x100"></img>
+          <img className="cart-image" src={candle[key].image}></img>
           <div className="cart-container">
           <h4 className="cart-name">{candle[key].name}</h4>
           <p>price/candle: ${candle[key].price}</p>

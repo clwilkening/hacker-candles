@@ -27,7 +27,7 @@ const {addToCart} = this.props;
     candleElements.push(
       <div className="candle-item" key={key}>
       <h3>{candle.name}</h3>
-      <img className="candle-image" src="http://placehold.it/250x250"></img>
+      <img className="candle-image" src={candle.image}></img>
       <h4>${candle.price}</h4>
       <p>scent: {candle.scent}</p>
       <button className="add-button" onClick={ () => addToCart(key) } >Add to Cart</button>
