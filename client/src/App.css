@@ -75,9 +75,13 @@ li {
   width: 40px;
   transition: all .5s;
   padding: -1px 15px 18px 15px;
+  margin-bottom: -10px;
+  margin-right: 10px;
 }
 .cart-img:hover {
-  width: 45px;
+  width: 43px;
+  margin-left: -3px;
+  margin-bottom: -15px;
 }
 
 .count {
