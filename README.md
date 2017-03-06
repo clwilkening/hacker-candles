@@ -62,6 +62,16 @@ renderCart() {
 ###My Approach
 The idea to build an e-commerce app came early to me during my time at General Assembly, but I didn't know what to sell. I chose to make candles and sell a real product, instead of building a site just for demonstration purposes. I whiteboarded the user flow of the app to help me choose the best way to structure the checkout process. I used Trello to structure the workflow.
 
+###Dependencies
+- React Stripe Checkout
+- Express
+- dotenv
+- axios
+- react-router-dom
+- history
+
+Run ```npm install``` for the root folder and client.
+
 ###For the Future
 
 - Go live with Hackercandle.com.
