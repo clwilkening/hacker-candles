@@ -16,9 +16,9 @@ this.renderInventory = this.renderInventory.bind(this);
 // }
 
 renderInventory() {
-const candles = {...this.props.inventoryObject};
-const candleElements = [];
-const {addToCart} = this.props;
+  const candles = {...this.props.inventoryObject};
+  const candleElements = [];
+  const {addToCart} = this.props;
 
   for(let key in candles) {
     let candle = candles[key]

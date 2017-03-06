@@ -18,16 +18,12 @@ class Cart extends Component {
   }
 
   renderCart() {
-    const cart = {...this.props.cart};
-    const candle = {...this.props.inventoryObject};
-    // console.log(candle);
-    var cartElements = [];
-      for(let key in cart) {
-        // console.log(key);
-        let item = cart[key];
-        // console.log(`ITEM FROM LOOP ++++ ${item}`)
-        // console.log(`here is candle loop ${JSON.stringify(candle)}`)
-        // console.log(candle[key].name)
+    const cart = {...this.props.cart}; // grab the cart state
+    const candle = {...this.props.inventoryObject}; //grab the candle inventory state
+    var cartElements = []; //set empty array
+      for(let key in cart) { //loop through the cart
+        let item = cart[key]; //set item to the value of each key
+        //push the items into empty array
         cartElements.push(
           <div className="cart-item" key={key}>
           <img className="cart-image" src={candle[key].image}></img>
@@ -39,6 +35,7 @@ class Cart extends Component {
           <div className="quant-cont">
           <p className="quantity">quantity:</p>
           { this.props.cart[key] === null || isNaN(this.props.cart[key])
+          //if the cart is empty set the default value to one, else set it to item.
           ?
             <div>
             <input className="quant-input" type="number" min="0" max="10" defaultValue="1" onChange={(e) => this.handleChange(e, key)} required></input>
@@ -50,8 +47,8 @@ class Cart extends Component {
           <div className="x-button" onClick={() => this.props.removeCandle(key)}>X</div>
           </div>
         )
-       // console.log(`cart[key] = ${key} + ${this.props.cart[key]}`)
       }
+      //return the elements
       return (
         <div>
         {cartElements}
