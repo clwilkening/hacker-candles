@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
-import FontAwesome from 'react-fontawesome';
+// import FontAwesome from 'react-fontawesome';
 import Home from './components/Home';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import About from './components/About';
@@ -8,7 +8,7 @@ import Cart from './components/Cart';
 import Shipping from './components/Shipping';
 import Billing from './components/Billing';
 import ReviewOrder from './components/ReviewOrder';
-import StripeCheckout from './components/StripeCheckout';
+// import StripeCheckout from './components/StripeCheckout';
 import NotFound from './components/NotFound';
 import axios from 'axios';
 import './App.css';
@@ -75,7 +75,7 @@ class App extends Component {
     cart[key] = cart[key] + 1 || 1
     let order = {...this.state.inventoryObject};
     let price = this.state.totalPrice;
-    price = price + order[key].price
+    price = price + order[key].price;
     let items = price / order[key].price;
     this.setState({
       cart,
@@ -116,9 +116,9 @@ class App extends Component {
     // console.log(candlePrice)
     //loop through cart, grab values
     let cartItems =[];
-      for (var key in cart) {
+      for (var item in cart) {
         // console.log(`My key loopty loop === ${key}`)
-        var obj = cart[key]
+        var obj = cart[item]
         // console.log(`My object === ${obj}`)
         if (isNaN(obj)){
           cartItems.pop(obj)
@@ -128,7 +128,7 @@ class App extends Component {
         };
       };
     let getSum = (total, num) => {
-      return total + num
+      return total + num;
     };
     let newCartItems = cartItems.reduce(getSum);
     // console.log(`new cart items = ${newCartItems}`)
@@ -137,7 +137,7 @@ class App extends Component {
     this.setState({
       cart,
       totalPrice: newTotal,
-      items: newCartItems
+      items: newCartItems,
     });
   };
 
@@ -166,6 +166,7 @@ class App extends Component {
   };
 
   render() {
+    //let items = <span key={this.state.items}>{this.state.items}</span>
     return (
       <BrowserRouter>
         <div className="App">
@@ -181,8 +182,16 @@ class App extends Component {
             <li>
               <Link className="link" to="/cart" ><img className="cart-img" alt="cart" src="/images/shopping_basket.png"></img></Link>
             </li>
-            <li className="count">
-              {this.state.items}
+            <li className="count-cont">
+            <CSSTransitionGroup
+              className="count"
+              component="span"
+              transitionName="count"
+              transitionEnterTimeout={500}
+              transitionLeaveTimeout={500}
+              >
+              <span key={this.state.items}>{this.state.items}</span>
+            </CSSTransitionGroup>
             </li>
           </ul>
         </nav>

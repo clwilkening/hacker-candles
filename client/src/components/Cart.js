@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class Cart extends Component {
   constructor(props) {
@@ -26,7 +26,7 @@ class Cart extends Component {
         //push the items into empty array
         cartElements.push(
           <div className="cart-item" key={key}>
-          <img className="cart-image" src={candle[key].image}></img>
+          <img className="cart-image" alt={candle[key]} src={candle[key].image}></img>
           <div className="cart-container">
           <h4 className="cart-name">{candle[key].name}</h4>
           <p>price/candle: ${candle[key].price}</p>

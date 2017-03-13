@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
 // import Header from './Header';
 
 class Home extends Component {
@@ -27,7 +29,7 @@ renderInventory() {
     candleElements.push(
       <div className="candle-item" key={key}>
       <h3>{candle.name}</h3>
-      <img className="candle-image" src={candle.image}></img>
+      <img className="candle-image"  alt={candle.name} src={candle.image}></img>
       <h4>${candle.price}</h4>
       <p>scent: {candle.scent}</p>
       <button className="add-button" onClick={ () => addToCart(key) } >Add to Cart</button>
@@ -43,10 +45,11 @@ renderInventory() {
 };
 
   render() {
+    const header = (<h1 id="header-home" key="header">Set the mood for code.</h1>);
     return(
       <div>
         <div id="candle-home">
-          <h1 id="header-home">Set the mood for code.</h1>
+          {header}
         </div>
         {this.renderInventory()}
       </div>

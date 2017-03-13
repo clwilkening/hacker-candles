@@ -53,9 +53,9 @@ render() {
       items > 0 ?
         <div className="shipping-form-container">
         <div className="rev-img rev-img-three">
-            <img className="delivery" src="/images/delivery.png"></img><p></p>
-            <img className="address-bold" src="/images/address_book.png"></img><p></p>
-            <img className="credit" src="/images/credit_card.png"></img>
+            <img className="delivery" alt="shipping" src="/images/delivery.png"></img><p></p>
+            <img className="address-bold" alt="billing" src="/images/address_book.png"></img><p></p>
+            <img className="credit" alt="payment" src="/images/credit_card.png"></img>
         </div>
         <h5 className="ship-cart-items">Items in cart: {this.itemsInCart()}</h5>
         { useShipping === false ?

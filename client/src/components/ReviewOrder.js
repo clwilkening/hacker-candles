@@ -128,9 +128,9 @@ render() {
       items > 0 ?
         <div>
           <div className="rev-img rev-img-three">
-            <img className="delivery" src="/images/delivery.png"></img><p></p>
-            <img className="address" src="/images/address_book.png"></img><p></p>
-            <img className="credit-bold" src="/images/credit_card.png"></img>
+            <img className="delivery" alt="shipping" src="/images/delivery.png"></img><p></p>
+            <img className="address" alt="billing" src="/images/address_book.png"></img><p></p>
+            <img className="credit-bold" alt="payment" src="/images/credit_card.png"></img>
           </div>
         <div className="review-container">
           <div className="address-cont">
