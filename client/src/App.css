@@ -140,6 +140,14 @@ li {
   font-family: 'Petit Formal Script', cursive;
   font-size: 3rem;
 }
+
+.header-home-appear{
+  opacity: 0.01;
+}
+.header-home-appear.header-home-appear-active{
+  opacity: 1;
+  transition: all 1s ease-in;
+}
 /*HOME COMPONENT*/
 
 #candle-home{
@@ -178,6 +186,21 @@ li {
   min-width: 100%;
   max-width: 250px;
 }
+.success-image {
+  min-width: 50%;
+  max-width: 250px;
+  padding: 25%;
+}
+
+/*.success-image-enter {
+  transition: all .5s ease-in;
+  opacity: 0.01;
+}
+
+.success-image-enter.success-image-enter-active{
+  opacity: 1;
+  transition: opacity .5s ease-in ;
+}*/
 
 .add-button {
   width: 66%;

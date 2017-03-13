@@ -22,6 +22,7 @@ class App extends Component {
     this.setShippingState = this.setShippingState.bind(this);
     this.getShipping = this.getShipping.bind(this);
     this.setBillingAddress = this.setBillingAddress.bind(this);
+    this.toCartSuccess = this.toCartSuccess.bind(this);
 
     this.state = {
       volume: "8oz",
@@ -81,7 +82,13 @@ class App extends Component {
       cart,
       totalPrice: price,
       items,
-    })
+      cartActive: order[key].scent,
+    });
+    setTimeout(() => {this.toCartSuccess(key)}, 1500);
+  }
+
+  toCartSuccess(key){
+    this.setState({ cartActive: null})
   }
 
   removeCandle = (key) => {
@@ -172,7 +179,7 @@ class App extends Component {
         <div className="App">
         <div className="App-header">
         <h2 className="brand-name">
-          <Link className="link" to="/"> Hacker Candles </Link>
+          <Link className="link" to="/"> Hacker Candle </Link>
         </h2>
         <nav className="nav">
           <ul>
@@ -202,6 +209,7 @@ class App extends Component {
               <Home
                 inventoryObject={this.state.inventoryObject}
                 addToCart={this.addToCart}
+                cartActive={this.state.cartActive}
               />
             )} />
             <Route exact path="/about" render={() => (
