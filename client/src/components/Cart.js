@@ -28,34 +28,32 @@ class Cart extends Component {
         //if the cart is empty set the default value to one, else set it to item.
         cartElements.push(
           <div className="cart-item" key={key}>
-          <img className="cart-image" alt={candle[key]} src={candle[key].image}></img>
-          <div className="cart-container">
-          <h4 className="cart-name">{candle[key].name}</h4>
-          <p>price/candle: ${candle[key].price}</p>
-          <p>scent: {candle[key].scent}</p>
-          </div>
-          <div className="quant-cont">
-          <p className="quantity">quantity:</p>
-            <input className="quant-input" type="number" min="0" max="10" defaultValue="0" onChange={(e) => this.handleChange(e, key)} required></input>
-          </div>
-          <div className="x-button" onClick={() => this.props.removeCandle(key)}>X</div>
+            <img className="cart-image" alt={candle[key]} src={candle[key].image}></img>
+            <div className="cart-container">
+              <h4 className="cart-name">{candle[key].name}</h4>
+              <p>price/candle: ${candle[key].price}</p>
+              <p>scent: {candle[key].scent}</p>
+            </div>
+            <div className="quant-cont">
+              <p className="quantity">quantity:</p>
+              <input className="quant-input" type="number" min="0" max="10" defaultValue="0" onChange={(e) => this.handleChange(e, key)} required></input>
+            </div>
+            <div className="x-button" onClick={() => this.props.removeCandle(key)}>X</div>
           </div>
         ) :
           cartElements.push(
           <div className="cart-item" key={key}>
-          <img className="cart-image" alt={candle[key]} src={candle[key].image}></img>
-          <div className="cart-container">
-          <h4 className="cart-name">{candle[key].name}</h4>
-          <p>price/candle: ${candle[key].price}</p>
-          <p>scent: {candle[key].scent}</p>
-          </div>
-          <div className="quant-cont">
-          <p className="quantity">quantity:</p>
-            <div>
-            <input className="quant-input" type="number" min="0" max="10" defaultValue={item} onChange={(e) => this.handleChange(e, key)} required></input>
+            <img className="cart-image" alt={candle[key]} src={candle[key].image}></img>
+            <div className="cart-container">
+              <h4 className="cart-name">{candle[key].name}</h4>
+              <p>price/candle: ${candle[key].price}</p>
+              <p>scent: {candle[key].scent}</p>
             </div>
-          </div>
-          <div className="x-button" onClick={() => this.props.removeCandle(key)}>X</div>
+            <div className="quant-cont">
+              <p className="quantity">quantity:</p>
+              <input className="quant-input" type="number" min="0" max="10" defaultValue={item} onChange={(e) => this.handleChange(e, key)} required></input>
+            </div>
+            <div className="x-button" onClick={() => this.props.removeCandle(key)}>X</div>
           </div>
         )
       }
