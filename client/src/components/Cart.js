@@ -24,6 +24,8 @@ class Cart extends Component {
       for(let key in cart) { //loop through the cart
         let item = cart[key]; //set item to the value of each key
         //push the items into empty array
+        this.props.cart[key] === null || isNaN(this.props.cart[key]) ?
+        //if the cart is empty set the default value to one, else set it to item.
         cartElements.push(
           <div className="cart-item" key={key}>
           <img className="cart-image" alt={candle[key]} src={candle[key].image}></img>
@@ -34,15 +36,24 @@ class Cart extends Component {
           </div>
           <div className="quant-cont">
           <p className="quantity">quantity:</p>
-          { this.props.cart[key] === null || isNaN(this.props.cart[key])
-          //if the cart is empty set the default value to one, else set it to item.
-          ?
+            <input className="quant-input" type="number" min="0" max="10" defaultValue="0" onChange={(e) => this.handleChange(e, key)} required></input>
+          </div>
+          <div className="x-button" onClick={() => this.props.removeCandle(key)}>X</div>
+          </div>
+        ) :
+          cartElements.push(
+          <div className="cart-item" key={key}>
+          <img className="cart-image" alt={candle[key]} src={candle[key].image}></img>
+          <div className="cart-container">
+          <h4 className="cart-name">{candle[key].name}</h4>
+          <p>price/candle: ${candle[key].price}</p>
+          <p>scent: {candle[key].scent}</p>
+          </div>
+          <div className="quant-cont">
+          <p className="quantity">quantity:</p>
             <div>
-            <input className="quant-input" type="number" min="0" max="10" defaultValue="1" onChange={(e) => this.handleChange(e, key)} required></input>
-            </div>
-          :
             <input className="quant-input" type="number" min="0" max="10" defaultValue={item} onChange={(e) => this.handleChange(e, key)} required></input>
-          }
+            </div>
           </div>
           <div className="x-button" onClick={() => this.props.removeCandle(key)}>X</div>
           </div>
