@@ -40,8 +40,9 @@ class Cart extends Component {
             </div>
             <div className="x-button" onClick={() => this.props.removeCandle(key)}>X</div>
           </div>
-        ) :
-          cartElements.push(
+        )
+        :
+        cartElements.push(
           <div className="cart-item" key={key}>
             <img className="cart-image" alt={candle[key]} src={candle[key].image}></img>
             <div className="cart-container">
@@ -76,7 +77,8 @@ class Cart extends Component {
       :
       <div>
         <div>
-          <Link to="/cart/shipping"><button id="to-checkout">Proceed to Checkout </button></Link>
+          <Link to="/cart/review-order"><button id="to-checkout" onClick={() => this.props.finalAmount()}>Proceed to Checkout
+          </button></Link>
         </div>
         {this.renderCart()}
         <h4>price before shipping: ${totalPrice}</h4>

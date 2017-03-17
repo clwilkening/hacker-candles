@@ -11,7 +11,6 @@ constructor(props) {
   this.showShippingAddress = this.showShippingAddress.bind(this);
   this.showBillingAddress = this.showBillingAddress.bind(this);
   this.getShippingCost = this.getShippingCost.bind(this);
-  this.finalAmount = this.finalAmount.bind(this);
 }
 
   itemsInCart() {
@@ -41,13 +40,13 @@ constructor(props) {
     return cost;
   }
 
-  finalAmount() {
-    let initial = this.props.shippingCost;
-    let items = this.props.items;
-    let cost = initial + items;
-    const final = cost + this.props.totalPrice;
-    return final;
-  }
+  // finalAmount() {
+  //   let initial = this.props.shippingCost;
+  //   let items = this.props.items;
+  //   let cost = initial + items;
+  //   const final = cost + this.props.totalPrice;
+  //   this.props.setFinal(final)
+  // }
 
   showShippingAddress() {
     let shipping = {...this.props.shipping};
@@ -122,7 +121,7 @@ constructor(props) {
   }
 
 render() {
-  const { shipping, items, useShipping, billingAddress, totalPrice } = this.props;
+  const { shipping, items, useShipping, billingAddress, totalPrice, inventoryObject, finalAmount } = this.props;
     return (
 
       items > 0 ?
@@ -142,11 +141,17 @@ render() {
             <div className="moneys">
             <div className="money"><h4>Candles:</h4><h4> ${totalPrice} </h4></div>
             <div className="money"><h4>Shipping:</h4><h4> ${this.getShippingCost()} </h4></div>
-            <div className="money"><h4>Total:</h4><h4>${this.finalAmount()} </h4></div>
+            <div className="money"><h4>Total:</h4><h4>${finalAmount / 100} </h4></div>
             </div>
           </div>
         </div>
-        <div className="take-money">  <TakeMoney /></div>
+        <div className="take-money">
+          <TakeMoney
+            description="Soy candle"
+            shippingAddress={true}
+            amount={finalAmount}
+          />
+        </div>
         </div>
       :
         <Redirect to="/" />

@@ -59,15 +59,15 @@ render() {
    { this.props.shipping ?
     <form className="shipping-form" action="#">
       <p>
-      <label htmlFor="firstName">First Name:</label>
+      <label htmlFor="firstName">First Name:*</label>
       <input ref={(input) => this.firstName = input} type="text" name="firstName" defaultValue={shipping.firstName} required/>
       </p>
       <p>
-      <label htmlFor="lastName">Last Name:</label>
+      <label htmlFor="lastName">Last Name:*</label>
       <input ref={(input) => this.lastName = input} type="text" name="lastName" defaultValue={shipping.lastName} required/>
       </p>
       <p>
-      <label htmlFor="email">Email:</label>
+      <label htmlFor="email">Email:*</label>
       <input ref={(input) => this.email = input} type="text" name="email" defaultValue={shipping.email} required/>
       </p>
       <p>
@@ -75,7 +75,7 @@ render() {
       <input ref={(input) => this.phone= input} type="phone" name="phone" defaultValue={shipping.phone} />
       </p>
       <p>
-      <label htmlFor="addressOne">Address line 1:</label>
+      <label htmlFor="addressOne">Address line 1:*</label>
       <input ref={(input) => this.addressOne = input} type="text" name="addressOne" defaultValue={shipping.addressOne} required/>
       </p>
       <p>
@@ -83,15 +83,15 @@ render() {
       <input ref={(input) => this.addressTwo = input} type="text" name="addressTwo" defaultValue={shipping.addressTwo} />
       </p>
       <p>
-      <label htmlFor="city">City:</label>
+      <label htmlFor="city">City:*</label>
       <input ref={(input) => this.city = input} type="text" name="city" defaultValue={shipping.city} required/>
       </p>
       <p>
-      <label htmlFor="state">State:</label>
+      <label htmlFor="state">State:*</label>
       <input ref={(input) => this.state = input} type="text" name="state" maxLength="2" defaultValue={shipping.state} required/>
       </p>
       <p>
-      <label htmlFor="zipcode">Zip Code:</label>
+      <label htmlFor="zipcode">Zip Code:*</label>
       <input ref={(input) => this.zipcode = input} type="text" name="zipcode" defaultValue={shipping.zipcode} required/>
       </p>
       <button type="submit" className="ship-button" onClick={(e) => this.createShippingAddress(e) }>Save</button>
@@ -99,15 +99,15 @@ render() {
     :
     <form className="shipping-form" action="#">
       <p>
-      <label htmlFor="firstName">First Name:</label>
+      <label htmlFor="firstName">First Name:*</label>
       <input ref={(input) => this.firstName = input} type="text" name="firstName" required />
       </p>
       <p>
-      <label htmlFor="lastName">Last Name:</label>
+      <label htmlFor="lastName">Last Name:*</label>
       <input ref={(input) => this.lastName = input} type="text" name="lastName" required />
       </p>
       <p>
-      <label htmlFor="email">Email:</label>
+      <label htmlFor="email">Email:*</label>
       <input ref={(input) => this.email = input} type="text" name="email" required />
       </p>
       <p>
@@ -115,7 +115,7 @@ render() {
       <input ref={(input) => this.phone= input} type="phone" name="phone" />
       </p>
       <p>
-      <label htmlFor="addressOne">Address line 1:</label>
+      <label htmlFor="addressOne">Address line 1:*</label>
       <input ref={(input) => this.addressOne = input} type="text" name="addressOne" required/>
       </p>
       <p>
@@ -123,15 +123,15 @@ render() {
       <input ref={(input) => this.addressTwo = input} type="text" name="addressTwo" placeholder="Apt, Unit, Suite, Etc."/>
       </p>
       <p>
-      <label htmlFor="city">City:</label>
+      <label htmlFor="city">City:*</label>
       <input ref={(input) => this.city = input} type="text" name="city" required/>
       </p>
       <p>
-      <label htmlFor="state">State:</label>
+      <label htmlFor="state">State:*</label>
       <input ref={(input) => this.state = input} type="text" name="state" maxLength="2"  required/>
       </p>
       <p>
-      <label htmlFor="zipcode">Zip Code:</label>
+      <label htmlFor="zipcode">Zip Code:*</label>
       <input ref={(input) => this.zipcode = input} type="text" name="zipcode" required/>
       </p>
     <button type="submit"className="ship-button" onClick={(e) => this.createShippingAddress(e) }> Save </button>

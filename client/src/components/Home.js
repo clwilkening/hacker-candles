@@ -12,11 +12,6 @@ this.renderInventory = this.renderInventory.bind(this);
 // this.addItem = this.addItem.bind(this);
 };
 
-// getInventory() {
-//   let candles = {...this.props.inventoryObject}
-//   console.log(`candles yay +:+:+ ${JSON.stringify(candles)}`)
-// }
-
 renderInventory() {
   const candles = {...this.props.inventoryObject};
   const candleElements = [];

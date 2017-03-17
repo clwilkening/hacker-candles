@@ -39,10 +39,11 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 //   res.render("index.pug", {keyPublishable}));
 
 app.post('/save-stripe-token', (req, res) => {
-  console.log(req);
-  let amount = 500;
+  let amount = 0.01;
+  // console.log('reqbody yo +:+:+ ' + req.body)
+  // console.log('STRIPE TOKEN YO +:+:+ ' + req.body.token)
   stripe.customers.create({
-     email: req.body.stripeEmail,
+    email: req.body.stripeEmail,
     source: req.body.stripeToken
   })
   .then(customer =>
@@ -55,6 +56,8 @@ app.post('/save-stripe-token', (req, res) => {
   .then(charge => {
     console.log(charge);
     res.json({message:'hello steve'})
+  }).catch(err => {
+    console.log(err)
   });
 });
 // File(path.resolve(__dirname, 'client/build', 'index.html'))

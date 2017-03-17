@@ -93,7 +93,7 @@ render() {
           <p>
           <label htmlFor="zipcode">Zip Code:</label>
           <input ref={(input) => this.zipcode = input} type="text" name="zipcode" value={shipping.zipcode} required/></p>
-          <button className="ship-button" onClick={(e) => this.createBillingAddress(e) }>Use this Address</button>
+          <button className="ship-button" onClick={(e) => this.createBillingAddress(e) }>Save</button>
         </form>
         :
         <form className="shipping-form" action="">
@@ -124,7 +124,7 @@ render() {
           <p>
           <label htmlFor="zipcode">Zip Code:</label>
           <input ref={(input) => this.zipcode = input} type="text" name="zipcode" required/></p>
-          <button className="ship-button" onClick={(e) => this.createBillingAddress(e) }>Use this Address</button>
+          <button className="ship-button" onClick={(e) => this.createBillingAddress(e) }>Save</button>
         </form>
       }
       { billingAddress.firstName !== "" && billingAddress.addressOne !== "" ?

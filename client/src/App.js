@@ -5,8 +5,8 @@ import Home from './components/Home';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import About from './components/About';
 import Cart from './components/Cart';
-import Shipping from './components/Shipping';
-import Billing from './components/Billing';
+// import Shipping from './components/Shipping';
+// import Billing from './components/Billing';
 import ReviewOrder from './components/ReviewOrder';
 // import StripeCheckout from './components/StripeCheckout';
 import NotFound from './components/NotFound';
@@ -23,6 +23,7 @@ class App extends Component {
     this.getShipping = this.getShipping.bind(this);
     this.setBillingAddress = this.setBillingAddress.bind(this);
     this.toCartSuccess = this.toCartSuccess.bind(this);
+    this.finalAmount = this.finalAmount.bind(this);
 
     this.state = {
       volume: "8oz",
@@ -57,6 +58,7 @@ class App extends Component {
   }
     componentDidMount() {
       this.getCandles();
+      this.finalAmount();
     }
 
   getCandles() {
@@ -172,6 +174,22 @@ class App extends Component {
     });
   };
 
+  finalAmount() {
+    if (this.state.items > 0) {
+      let initial = this.state.shippingCost;
+      let items = this.state.items;
+      let cost = initial + items;
+      const final = (cost + this.state.totalPrice) * 100;
+      console.log(final)
+      this.setState({finalAmount: final})
+    }
+  }
+  // setFinal(finalAmount){
+  //   this.setState({
+  //     finalAmount,
+  //   });
+  // }
+
   render() {
     //let items = <span key={this.state.items}>{this.state.items}</span>
     return (
@@ -224,28 +242,7 @@ class App extends Component {
                 totalPrice={this.state.totalPrice}
                 updateCart={this.updateCart}
                 removeCandle={this.removeCandle}
-              />
-            )} />
-            <Route exact path="/cart/shipping" render={() => (
-              <Shipping
-                inventoryObject={this.state.inventoryObject}
-                items={this.state.items}
-                cart={this.state.cart}
-                setShippingState={this.setShippingState}
-                shipping={this.state.shipping}
-              />
-            )} />
-            <Route exact path="/cart/shipping/billing" render={() => (
-              <Billing
-                inventoryObject={this.state.inventoryObject}
-                items={this.state.items}
-                cart={this.state.cart}
-                setShippingState={this.setShippingState}
-                shipping={this.state.shipping}
-                useShipping={this.state.useShipping}
-                getShipping={this.getShipping}
-                billingAddress={this.state.billingAddress}
-                setBillingAddress={this.setBillingAddress}
+                finalAmount={this.finalAmount}
               />
             )} />
             <Route exact path="/cart/review-order" render={() => (
@@ -261,6 +258,7 @@ class App extends Component {
                 setBillingAddress={this.setBillingAddress}
                 totalPrice={this.state.totalPrice}
                 shippingCost={this.state.shippingCost}
+                finalAmount={this.state.finalAmount}
               />
             )} />
             <Route component={NotFound} />

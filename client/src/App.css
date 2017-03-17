@@ -324,19 +324,23 @@ li {
 .shipping-form p {
   display: flex;
   flex-flow: row wrap;
+  justify-content: space-between;
   margin-top: 2px;
+  max-width: 15rem;
 }
 
-.shipping-form p label {
-  border-left: 2px solid #2196f3;
+.shipping-form label {
+  font-size: .8rem;
+  font-weight: bold;
 }
 
 .shipping-form p input {
   height: 2.5em;
   border: none;
-  border-bottom: 1px solid black;
-  border-left: 2px solid #2196f3;
+  background-color: #fafafa;
+  border-bottom: 1.5px solid grey;
   width: 100%;
+  max-width: 100%;
   transition: all .25s;
 }
 
@@ -347,6 +351,7 @@ li {
 }
 
 .ship-button {
+  align-self: stretch;
   margin-top: 15px;
   border: none;
   max-width: 10rem;
@@ -364,7 +369,7 @@ li {
 }
 
 #to-bill-cont {
-float: left;
+  float: left;
 }
 
 .to-billing {
