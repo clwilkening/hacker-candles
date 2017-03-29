@@ -4,37 +4,34 @@ import axios from 'axios';
 
 class TakeMoney extends Component {
   onToken = (token) => {
-    console.log('TOKEN +:+:+:+:+:+ ' + JSON.stringify(token))
-    axios.post('/save-stripe-token', JSON.stringify(token))
-    // .then(response => response.json())
-    .then(response => {
-        console.log('RESPONSE DATAT +:+:+:+:+ ' + response.data)
-        alert(`We are in business, email`);
+    const newToken = token;
+    newToken['amount'] = this.props.amount;
+    axios.post('/save-stripe-token', newToken)
+    .then(res => {
+        alert(`Thank you for your purchase, ${token.email}`);
       })
-    .catch(err => console.log(err))
+    .catch(err => console.log('REACT ', err))
     };
+
+
 
   render() {
     const { amount, description } = this.props;
     return (
-      // ...
       <StripeCheckout
-        token={this.onToken}
-        stripeKey="pk_test_x7m7cWJPeFzSkjQ8uV7PidI6"
-        shippingAddress={true}
+        stripeKey="pk_live_JbHS9IW8g2QzSCTGHPnq59uP"
+        shippingAddress
         billingAddress={true}
         zipcode={true}
         amount={amount}
         description={description}
-        name="Hackercandle"
+        name="Hacker Candle"
         locale="auto"
         currency="USD"
+        token={this.onToken}
       />
     )
   }
 }
-
-// stripeKey="pk_test_x7m7cWJPeFzSkjQ8uV7PidI6"
-//stripeKey="pk_live_JbHS9IW8g2QzSCTGHPnq59uP"
 
 export default TakeMoney;

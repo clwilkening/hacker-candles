@@ -77,7 +77,8 @@ class Cart extends Component {
       :
       <div>
         <div>
-          <Link to="/cart/review-order"><button id="to-checkout" onClick={() => this.props.finalAmount()}>Proceed to Checkout
+          <Link to="/cart/review-order">
+          <button id="to-checkout" onClick={() => this.props.finalAmount()}>Proceed to Checkout
           </button></Link>
         </div>
         {this.renderCart()}
