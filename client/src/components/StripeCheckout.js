@@ -6,6 +6,8 @@ class TakeMoney extends Component {
   onToken = (token) => {
     const newToken = token;
     newToken['amount'] = this.props.amount;
+    newToken['description'] = JSON.stringify(this.props.cart);
+    console.log(newToken)
     axios.post('/save-stripe-token', newToken)
     .then(res => {
         alert(`Thank you for your purchase, ${token.email}`);
@@ -14,17 +16,16 @@ class TakeMoney extends Component {
     };
 
 
-
   render() {
-    const { amount, description } = this.props;
+    const { amount } = this.props;
     return (
       <StripeCheckout
-        stripeKey="pk_live_JbHS9IW8g2QzSCTGHPnq59uP"
+        stripeKey="pk_test_x7m7cWJPeFzSkjQ8uV7PidI6"
         shippingAddress
         billingAddress={true}
         zipcode={true}
         amount={amount}
-        description={description}
+        description="Soy Candles"
         name="Hacker Candle"
         locale="auto"
         currency="USD"

@@ -40,18 +40,10 @@ constructor(props) {
     return cost;
   }
 
-  // finalAmount() {
-  //   let initial = this.props.shippingCost;
-  //   let items = this.props.items;
-  //   let cost = initial + items;
-  //   const final = cost + this.props.totalPrice;
-  //   this.props.setFinal(final)
-  // }
-
   showShippingAddress() {
     let shipping = {...this.props.shipping};
     let showShipping = []
-      // for (let element in shipping){
+
       shipping.addressTwo !== "" ?
       showShipping.push(
         <div className="review-address" key="shipping-address">
@@ -87,7 +79,6 @@ constructor(props) {
   showBillingAddress() {
     let billing = {...this.props.billingAddress};
     let showBilling = []
-      // for (let element in billing){
       billing.addressTwo !== "" ?
       showBilling.push(
         <div className="review-address" key="billing-address">
@@ -121,7 +112,7 @@ constructor(props) {
   }
 
 render() {
-  const { shipping, items, useShipping, billingAddress, totalPrice, inventoryObject, finalAmount } = this.props;
+  const { shipping, items, useShipping, billingAddress, totalPrice, inventoryObject, finalAmount, cart } = this.props;
     return (
 
       items > 0 ?
@@ -147,9 +138,9 @@ render() {
         </div>
         <div className="take-money">
           <TakeMoney
-            description="Soy candle"
             shippingAddress={true}
             amount={finalAmount}
+            cart={cart}
           />
         </div>
         </div>

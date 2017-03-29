@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
-// import FontAwesome from 'react-fontawesome';
 import Home from './components/Home';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import About from './components/About';
 import Cart from './components/Cart';
-// import Shipping from './components/Shipping';
-// import Billing from './components/Billing';
 import ReviewOrder from './components/ReviewOrder';
-// import StripeCheckout from './components/StripeCheckout';
 import NotFound from './components/NotFound';
 import axios from 'axios';
 import './App.css';

@@ -13,7 +13,6 @@ require('dotenv').config()
 const keyPublishable = process.env.PUBLISHABLE_KEY;
 const keySecret = process.env.SECRET_KEY;
 const app = express();
-// const app = require("express")();
 const stripe = require("stripe")(keySecret);
 
 
@@ -23,7 +22,7 @@ const stripe = require("stripe")(keySecret);
 // app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, '/public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -33,7 +32,7 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.use('/save-stripe-token', stripeToken);
 
-app.listen(4567);
+//app.listen(4567);
 
 app.use('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'client/build', 'index.html'));
