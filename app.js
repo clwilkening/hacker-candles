@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+const stripeToken = require('./save-stripe-token');
 require('dotenv').config()
 
 // var index = require('./routes/index');
@@ -30,37 +31,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 
-// app.use('/save-stripe-token', (req, res) => {
-//   res.json({message: 'hello world'});
-// });
+app.use('/save-stripe-token', stripeToken);
 
-
-// app.get("/", (req, res) =>
-//   res.render("index.pug", {keyPublishable}));
-
-app.post('/save-stripe-token', (req, res) => {
-  let amount = 0.01;
-  // console.log('reqbody yo +:+:+ ' + req.body)
-  // console.log('STRIPE TOKEN YO +:+:+ ' + req.body.token)
-  stripe.customers.create({
-    email: req.body.stripeEmail,
-    source: req.body.stripeToken
-  })
-  .then(customer =>
-    stripe.charges.create({
-      amount,
-      description: "Sample Charge",
-         currency: "usd",
-         customer: customer.id
-    }))
-  .then(charge => {
-    console.log(charge);
-    res.json({message:'hello steve'})
-  }).catch(err => {
-    console.log(err)
-  });
-});
-// File(path.resolve(__dirname, 'client/build', 'index.html'))
 app.listen(4567);
 
 app.use('*', (req, res) => {

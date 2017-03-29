@@ -1,23 +1,30 @@
 var express = require('express');
 var router = express.Router();
-var stripe = require('stripe');
+//const app = require("express")()
+require('dotenv').config()
+const keySecret = process.env.SECRET_KEY;
+const stripe = require("stripe")(keySecret);
 
- app.post("/save-stripe-token", (req, res) => {
-   let amount = 500;
-   stripe.customers.create({
-      email: req.body.stripeEmail,
-     source: req.body.stripeToken
-   })
-   .then(customer =>
-     stripe.charges.create({
-       amount,
-       description: "Sample Charge",
-          currency: "usd",
-          customer: customer.id
-     }))
-   .then(charge => res.sendFile(path.resolve(__dirname, 'client/build', 'index.html')));
- });
+router.post('/', (req, res) => {
+  let amount = req.body.amount;
+  stripe.customers.create({
+    email: req.body.email,
+    source: req.body.id
+  })
+  .then(customer => {
+    stripe.charges.create({
+      amount,
+      description: "Sample Charge",
+      currency: "usd",
+      customer: customer.id,
+    })
+  })
+  .then(charge => {
+    res.json({message: 'charged'})
+  }).catch(err => {
+    console.log('HERE DA ERROR AT ', err)
+  });
+});
 
- app.listen(4567);
 
- // module.exports =
+module.exports = router;
