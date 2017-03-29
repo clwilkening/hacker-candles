@@ -192,6 +192,7 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
         <div className="App-header">
+        <img src="images/favicon.png" />
         <h2 className="brand-name">
           <Link className="link" to="/"> Hacker Candle </Link>
         </h2>
