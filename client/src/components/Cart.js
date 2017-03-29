@@ -46,13 +46,15 @@ class Cart extends Component {
           <div className="cart-item" key={key}>
             <img className="cart-image" alt={candle[key]} src={candle[key].image}></img>
             <div className="cart-container">
-              <h4 className="cart-name">{candle[key].name}</h4>
-              <p>price/candle: ${candle[key].price}</p>
-              <p>scent: {candle[key].scent}</p>
-            </div>
-            <div className="quant-cont">
-              <p className="quantity">quantity:</p>
-              <input className="quant-input" type="number" min="0" max="10" defaultValue={item} onChange={(e) => this.handleChange(e, key)} required></input>
+              <div className="cart-desc">
+                <h4 className="cart-name">{candle[key].name}</h4>
+                <p>price/candle: ${candle[key].price}</p>
+                <p>scent: {candle[key].scent}</p>
+              </div>
+              <div className="quant-cont">
+                <p className="quantity">quantity:</p>
+                <input className="quant-input" type="number" min="0" max="10" defaultValue={item} onChange={(e) => this.handleChange(e, key)} required></input>
+              </div>
             </div>
             <div className="x-button" onClick={() => this.props.removeCandle(key)}>X</div>
           </div>

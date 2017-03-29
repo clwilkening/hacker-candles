@@ -247,7 +247,8 @@ li {
   margin-top: 15px;
   display: flex;
   flex-flow: row wrap;
-  justify-content: flex-start;
+  justify-content: space-between;
+  align-items: space-between;
   background-color: white;
   box-shadow: 0px 0px 3px #607d8b;
 }
@@ -259,6 +260,13 @@ li {
 }
 
 .cart-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  width: 75%;
+}
+
+.cart-desc {
   margin-left: 20px;
   text-align: left;
   flex-flow: column wrap;
@@ -295,8 +303,11 @@ li {
   transition: font-size .25s;
   align-self: right;
   height: 20px;
+  transition: all .5s;
 }
 .x-button:hover {
+  background-color: #fafafa;
+  color: #64b5f6;
   font-size: 18px;
 }
 
