@@ -4,7 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-const stripeToken = require('./save-stripe-token');
+const stripeToken = require('./routes/save-stripe-token');
+const emailReceipt = require('./routes/email-receipt');
 require('dotenv').config()
 
 // var index = require('./routes/index');
@@ -31,6 +32,7 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 
 
 app.use('/save-stripe-token', stripeToken);
+app.use('/email-receipt', emailReceipt);
 
 //app.listen(4567);
 

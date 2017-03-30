@@ -7,11 +7,15 @@ class TakeMoney extends Component {
     const newToken = token;
     newToken['amount'] = this.props.amount;
     newToken['description'] = JSON.stringify(this.props.cart);
-    console.log(newToken)
     axios.post('/save-stripe-token', newToken)
     .then(res => {
         alert(`Thank you for your purchase, ${token.email}`);
-      })
+        console.log(res.data)
+        axios.post('/email-receipt', res.data);
+    })
+    .then(res => {
+      console.log('redirect here')
+    })
     .catch(err => console.log('REACT ', err))
     };
 

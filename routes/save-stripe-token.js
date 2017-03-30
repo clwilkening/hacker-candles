@@ -20,7 +20,7 @@ router.post('/', (req, res) => {
     })
   })
   .then(charge => {
-    res.json({message: 'charged'})
+    res.send(req.body)
   }).catch(err => {
     console.log('HERE DA ERROR AT ', err)
   });
