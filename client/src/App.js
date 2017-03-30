@@ -136,6 +136,9 @@ class App extends Component {
   completedCheckout() {
     this.setState({
       purchased: true,
+      cart: {},
+      totalPrice: 0,
+      items: 0,
     })
   }
 
