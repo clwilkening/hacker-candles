@@ -39,82 +39,11 @@ constructor(props) {
     return cost;
   }
 
-  // showShippingAddress() {
-  //   let shipping = {...this.props.shipping};
-  //   let showShipping = []
-
-  //     shipping.addressTwo !== "" ?
-  //     showShipping.push(
-  //       <div className="review-address" key="shipping-address">
-  //         <h4>Shipping Address</h4>
-  //         <p>{shipping.firstName}</p>
-  //         <p>{shipping.lastName}</p>
-  //         <p>{shipping.addressOne}</p>
-  //         <p>{shipping.addressTwo}</p>
-  //         <p>{shipping.city}</p>
-  //         <p>{shipping.state}</p>
-  //         <p>{shipping.zipcode}</p>
-  //       </div>
-  //     )
-  //     :
-  //     showShipping.push(
-  //       <div className="review-address" key="shipping-address">
-  //         <h4>Shipping Address</h4>
-  //         <p>{shipping.firstName}</p>
-  //         <p>{shipping.lastName}</p>
-  //         <p>{shipping.addressOne}</p>
-  //         <p>{shipping.city}</p>
-  //         <p>{shipping.state}</p>
-  //         <p>{shipping.zipcode}</p>
-  //       </div>
-  //     )
-  //   return (
-  //     <div>
-  //       {showShipping}
-  //     </div>
-  //   )
-  // }
-
-  // showBillingAddress() {
-  //   let billing = {...this.props.billingAddress};
-  //   let showBilling = []
-  //     billing.addressTwo !== "" ?
-  //     showBilling.push(
-  //       <div className="review-address" key="billing-address">
-  //         <h4>Billing Address</h4>
-  //         <p>{billing.firstName}</p>
-  //         <p>{billing.lastName}</p>
-  //         <p>{billing.addressOne}</p>
-  //         <p>{billing.addressTwo}</p>
-  //         <p>{billing.city}</p>
-  //         <p>{billing.state}</p>
-  //         <p>{billing.zipcode}</p>
-  //       </div>
-  //     )
-  //     :
-  //     showBilling.push(
-  //       <div className="review-address" key="billing-address">
-  //         <h4>Billing Address</h4>
-  //         <p>{billing.firstName}</p>
-  //         <p>{billing.lastName}</p>
-  //         <p>{billing.addressOne}</p>
-  //         <p>{billing.city}</p>
-  //         <p>{billing.state}</p>
-  //         <p>{billing.zipcode}</p>
-  //       </div>
-  //     )
-  //   return (
-  //     <div>
-  //       {showBilling}
-  //     </div>
-  //   )
-  // }
-
 render() {
-  const { shipping, items, useShipping, billingAddress, totalPrice, inventoryObject, finalAmount, cart } = this.props;
+  const { shipping, items, useShipping, billingAddress, totalPrice, inventoryObject, finalAmount, cart, purchased } = this.props;
     return (
 
-      items > 0 ?
+      items > 0 && purchased === false ?
         <div>
           <div className="review-container">
             <div className="review-ord">
@@ -134,6 +63,7 @@ render() {
               shippingAddress={true}
               amount={finalAmount}
               cart={cart}
+              completedCheckout={this.props.completedCheckout}
             />
           </div>
         </div>

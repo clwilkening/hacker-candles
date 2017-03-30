@@ -65,9 +65,9 @@ router.post('/', (req, res, next) => {
           res.redirect('/error')
       }
       console.log(`Messages sent `, info.messageId, info.response);
-      res.send(`Messages sent `, info.messageId, info.response);
   });
 
 });
+
 
 module.exports = router;

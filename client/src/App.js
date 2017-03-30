@@ -15,41 +15,17 @@ class App extends Component {
 
     this.getCandles = this.getCandles.bind(this);
     this.addToCart = this.addToCart.bind(this);
-    this.setShippingState = this.setShippingState.bind(this);
-    this.getShipping = this.getShipping.bind(this);
-    this.setBillingAddress = this.setBillingAddress.bind(this);
     this.toCartSuccess = this.toCartSuccess.bind(this);
     this.finalAmount = this.finalAmount.bind(this);
+    this.completedCheckout = this.completedCheckout.bind(this);
 
     this.state = {
       volume: "8oz",
       cart: {},
       totalPrice: 0,
       items: 0,
-      shipping: {
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        addressOne: "",
-        addressTwo: "",
-        city: "",
-        state: "",
-        zipcode: "",
-      },
-      billingAddress: {
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        addressOne: "",
-        addressTwo: "",
-        city: "",
-        state: "",
-        zipcode: "",
-      },
-      useShipping: false,
       shippingCost: 4,
+      purchased: false,
     };
   }
     componentDidMount() {
@@ -81,6 +57,7 @@ class App extends Component {
       totalPrice: price,
       items,
       cartActive: order[key].scent,
+      purchased: false,
     });
     setTimeout(() => {this.toCartSuccess(key)}, 1500);
   }
@@ -146,45 +123,21 @@ class App extends Component {
     });
   };
 
-  setShippingState(shipping) {
-    this.setState({
-      shipping,
-    });
-  };
-
-  getShipping() {
-    if (this.state.useShipping === false){
-      this.setState({
-        useShipping: true,
-      });
-    } else {
-      this.setState({
-        useShipping: false,
-      });
-    };
-  };
-
-  setBillingAddress(shipping) {
-    this.setState({
-      billingAddress: shipping,
-    });
-  };
-
   finalAmount() {
     if (this.state.items > 0) {
       let initial = this.state.shippingCost;
       let items = this.state.items;
       let cost = initial + items;
       const final = (cost + this.state.totalPrice) * 100;
-      console.log(final)
       this.setState({finalAmount: final})
     }
   }
-  // setFinal(finalAmount){
-  //   this.setState({
-  //     finalAmount,
-  //   });
-  // }
+
+  completedCheckout() {
+    this.setState({
+      purchased: true,
+    })
+  }
 
   render() {
     //let items = <span key={this.state.items}>{this.state.items}</span>
@@ -256,6 +209,8 @@ class App extends Component {
                 totalPrice={this.state.totalPrice}
                 shippingCost={this.state.shippingCost}
                 finalAmount={this.state.finalAmount}
+                purchased={this.state.purchased}
+                completedCheckout={this.completedCheckout}
               />
             )} />
             <Route component={NotFound} />

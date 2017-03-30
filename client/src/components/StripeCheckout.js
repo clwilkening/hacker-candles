@@ -1,20 +1,26 @@
 import React, {Component} from 'react'
 import StripeCheckout from 'react-stripe-checkout';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 class TakeMoney extends Component {
+  constructor(props) {
+    super(props);
+
+
+  }
+
   onToken = (token) => {
     const newToken = token;
     newToken['amount'] = this.props.amount;
     newToken['description'] = JSON.stringify(this.props.cart);
     axios.post('/save-stripe-token', newToken)
     .then(res => {
-        alert(`Thank you for your purchase, ${token.email}`);
-        console.log(res.data)
-        axios.post('/email-receipt', res.data);
+        alert(`Thank you for your purchase, ${token.card.name}`);
+        axios.post('/email-receipt', res.data)
     })
     .then(res => {
-      console.log('redirect here')
+      this.props.completedCheckout();
     })
     .catch(err => console.log('REACT ', err))
     };
